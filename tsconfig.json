@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@shared/*": ["shared/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"]
+    },
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "@types"
+    ],
+    "types": [
+      "@types/jest"
+    ]
+  }
+}

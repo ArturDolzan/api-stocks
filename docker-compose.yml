@@ -1,0 +1,46 @@
+version: "3.9"
+
+networks:
+  isolation-network:
+    driver: bridge
+
+services:
+  database:
+    image: postgres
+    container_name: database_stocks
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=stocks
+      - POSTGRES_DB=stocks
+    volumes:
+      - pgdata:/data/postgres
+  app-service:
+    build: .
+    container_name: api-service
+    restart: always
+    ports:
+      - 3333:3334
+    volumes:
+      - .:/usr/app-service
+    links:
+      - database
+      - app-stocks
+    depends_on:
+      - database
+  app-stocks:
+    build:
+      context: ./
+      dockerfile: DockerfileStocks
+    container_name: api-stocks
+    restart: always
+    ports:
+      - 8000:3334
+    volumes:
+      - .:/usr/app-stocks
+
+volumes:
+  pgdata:
+    driver: local

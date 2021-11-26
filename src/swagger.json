@@ -1,0 +1,224 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Stocks Documention",
+    "description": "This is an API Stocks",
+    "version": "1.0.0",
+    "contact": {
+      "email": "arturdolzan@gmail.com"
+    }
+  },  
+  "paths": {        
+    "/register": {
+      "post": {
+        "tags": ["Register"],
+        "summary": "Register new user",
+        "description": "Register new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email, Name or password missing!"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email or password incorrect!"
+          }
+        }
+      }
+    },
+    "/stock?q={q}": {
+      "get": {
+        "tags": ["Stock"],
+        "summary": "Stock",
+        "description": "Get Stock",
+        "security": [
+          { "bearerAuth": []}
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "path",
+            "description": "Stock id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }        
+      }
+    },
+    "/history": {
+      "get": {
+        "tags": ["Stock History"],
+        "summary": "Stock History",
+        "description": "Get Stock History",
+        "security": [
+          { "bearerAuth": []}
+        ],        
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }        
+      }
+    },
+    "/stats": {
+      "get": {
+        "tags": ["Stock Stats (Only SuperUsers)"],
+        "summary": "Stock Stats (Only SuperUsers)",
+        "description": "Get Stock Stats",
+        "security": [
+          { "bearerAuth": []}
+        ],        
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }        
+      }
+    },
+    "/password/forgot": {
+      "post": {
+        "tags": ["Forgot password"],
+        "summary": "Forgot password",
+        "description": "Forgot password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request!"
+          }
+        }
+      }
+    },
+    "/password/reset?token={token}": {
+      "post": {
+        "tags": ["Reset password"],
+        "summary": "Reset password",
+        "description": "Reset password",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "Token Received on Forgot Password e-mail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request!"
+          }
+        }
+      }
+    }
+  },
+  
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
