@@ -1,4 +1,4 @@
-# Node.js Challenge - Artur Dolzan Neto
+# Node.js - Artur Dolzan Neto
 
 **Important**: Docker service required
 
@@ -11,8 +11,6 @@ yarn typeorm migration:run
 yarn seed:admin
 ```
 
-**Yarn seed** will insert the super user to database > email: admin@stocks.com password: Sl1322\*\* )
-
 ### Commands to run tests
 
 ```
@@ -22,21 +20,6 @@ yarn test
 ### Swagger Api Doc
 
 _http://localhost:3333/api-docs/#/_
-
-## What I Did
-
-- **All minimum requirements**
-- TDD architecture
-- Typescript
-- General error handling middleware
-- Add unit tests for **some (but it's the same pattern to all)** the services
-- Use JWT instead of basic authentication for endpoints
-- Use containers to orchestrate the service
-  - Database service (postgres)
-  - API-Service: app-service container
-  - Stock-Service: stock-service container
-- Use OpenAPI/Swagger to document the API
-- Add endpoint to reset user password sending an email with the new password
 
 # Register
 
